@@ -32,9 +32,11 @@ namespace AnimeWatcher
             ShowFileDialogIfBrowserIsNotSet();
         }
 
+
         private void ShowFileDialogIfBrowserIsNotSet()
         {
-            if(!manager.userWebBrowserIsSet)
+            Console.WriteLine(new Random().Next(1, 3));
+            if (!manager.userWebBrowserIsSet)
             {
                 var openFileDialog = new OpenFileDialog();
                 MessageBox.Show("Wähle deinen Browser aus! (.exe Datei)");
