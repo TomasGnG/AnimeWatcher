@@ -7,9 +7,8 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
         Background="{DynamicResource backgroundImage}">
-    <Grid RenderTransformOrigin="0.5,0.5">
-        <Button x:Name="button1" Content="Open E1" HorizontalAlignment="Left" Height="282" Margin="82,97,0,0" VerticalAlignment="Top" Width="632" FontSize="152" Click="button1_Click"/>
-
+    <Grid x:Name="wpf1" RenderTransformOrigin="0.5,0.5">
+        <Label Content="Wähle einen Anime aus" HorizontalAlignment="Center" Height="32" Margin="0,10,0,0" VerticalAlignment="Top" Width="780" Foreground="White" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" FontWeight="Bold"/>
     </Grid>
     <Window.Resources>
         <ImageSource x:Key="imgSource" >D:\Anwendungsentwicklung\source\AnimeWatcher\AnimeWatcher\images\Background.jpg</ImageSource>

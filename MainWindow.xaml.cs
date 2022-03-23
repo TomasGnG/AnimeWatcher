@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -35,23 +36,20 @@ namespace AnimeWatcher
 
         private void ShowFileDialogIfBrowserIsNotSet()
         {
-            Console.WriteLine(new Random().Next(1, 3));
+            var projectName = System.IO.Path.GetFileNameWithoutExtension(System.Reflection.Assembly.GetExecutingAssembly().Location).ToString();
             if (!manager.userWebBrowserIsSet)
             {
                 var openFileDialog = new OpenFileDialog();
-                MessageBox.Show("Wähle deinen Browser aus! (.exe Datei)");
+                
+                MessageBox.Show("Wähle deinen Browser aus! (.exe Datei)", projectName);
                 do
                 {
                     openFileDialog.ShowDialog();
-                } while (openFileDialog.FileName == "");
+                } while (openFileDialog.FileName == "" || !openFileDialog.FileName.EndsWith(".exe"));
                 
                 manager.CreateFileIfNotExists(openFileDialog.FileName);
             }
         }
 
-        private void button1_Click(object sender, RoutedEventArgs e)
-        {
-            System.Diagnostics.Process.Start(manager.userWebBrowserPath, "https://voe.sx/9iuaz6uwjzr7/Ta%20Rascal%20Does%20Not%20Dream%20of%20Bunny%20Girl%20Senpai%2001%20Web%20720p%20AAC");
-        }
     }
 }

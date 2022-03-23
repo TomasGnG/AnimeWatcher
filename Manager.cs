@@ -16,7 +16,6 @@ namespace AnimeWatcher
         {
             var createFileName = "AppSettings.txt";
             var createFilePath = AppDomain.CurrentDomain.BaseDirectory + @"\" + createFileName;
-            userWebBrowserPath = File.ReadAllTextAsync(createFilePath).Result;
         }
 
         public void CreateFileIfNotExists(String pathFromUsersWebBrowser)
