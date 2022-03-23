@@ -5,8 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AnimeWatcher"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="MainWindow" Height="450" Width="800"
+        Background="{DynamicResource backgroundImage}">
+    <Grid RenderTransformOrigin="0.5,0.5">
+        <Button x:Name="button1" Content="Open E1" HorizontalAlignment="Left" Height="282" Margin="82,97,0,0" VerticalAlignment="Top" Width="632" FontSize="152" Click="button1_Click"/>
 
     </Grid>
+    <Window.Resources>
+        <ImageSource x:Key="imgSource" >D:\Anwendungsentwicklung\source\AnimeWatcher\AnimeWatcher\images\Background.jpg</ImageSource>
+        <ImageBrush x:Key="backgroundImage" ImageSource="{DynamicResource imgSource}" Opacity="0.3" Stretch="Fill" TileMode="None"></ImageBrush>
+    </Window.Resources>
 </Window>
