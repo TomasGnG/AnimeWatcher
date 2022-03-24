@@ -31,9 +31,17 @@ namespace AnimeWatcher
 
             manager.SetAndCheckIfSettingsFileExist();
             ShowFileDialogIfBrowserIsNotSet();
+            
+            LoadAnimeComboBox();
         }
 
-
+        private void LoadAnimeComboBox()
+        {
+            foreach (var item in manager.animeSeriesList)
+            {
+                animeComboBox.Items.Add(item.animeName);
+            }
+        }
         private void ShowFileDialogIfBrowserIsNotSet()
         {
             var projectName = System.IO.Path.GetFileNameWithoutExtension(System.Reflection.Assembly.GetExecutingAssembly().Location).ToString();
@@ -50,6 +58,49 @@ namespace AnimeWatcher
                 manager.CreateFileIfNotExists(openFileDialog.FileName);
             }
         }
+        private void EditEverythingToAnimeSeries(String animeName)
+        {
+            foreach (var animeSeries in manager.animeSeriesList)
+            {
+                if(animeSeries.animeName == animeName)
+                {
+                    try
+                    {
+                        animePicturePreview.Source = animeSeries.animeImage.Source;
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.Error.WriteLine(ex.Message);
+                        throw;
+                    }
+                    
+                    for (int i = 0; i < animeSeries.animeEpisodes.Count; i++)
+                    {
+                        episodeComboBox.Items.Add($"Folge {i+1}");
+                    }
+                }
+            }
 
+        }
+
+        private void animeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            EditEverythingToAnimeSeries(animeComboBox.SelectedItem.ToString());
+        }
+
+        private void openEpisodeButton_Click(object sender, RoutedEventArgs e)
+        {
+            var url = "";
+            foreach (var animeSeries in manager.animeSeriesList)
+            {
+                if (animeSeries.animeName == animeComboBox.SelectedValue.ToString())
+                {
+                    var episode = animeSeries.animeEpisodes[animeComboBox.SelectedIndex];
+                    url = episode;
+
+                    System.Diagnostics.Process.Start(manager.userWebBrowserPath, url);
+                }
+            }
+        }
     }
 }
